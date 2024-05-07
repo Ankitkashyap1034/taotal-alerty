@@ -1,0 +1,58 @@
+
+///// blade
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+
+
+@if (Session::has('success'))
+  <script>
+    iziToast.success({
+      //title: 'Success',
+      message: "{{ Session::get('success') }}",
+      position: 'topRight',
+      timeout: 4000,
+      displayMode: 0,
+      color: 'green',
+      theme: 'light',
+      messageColor: 'black',
+    });
+  </script>
+
+  {{-- @elseif (Session::has('error')) --}}
+  {{-- <script>
+    iziToast.warning({
+      //title: 'Success',
+      message: "{{ Session::get('error') }}",
+      position: 'topRight',
+      timeout: 4000,
+      displayMode: 0,
+      color: 'orange',
+      theme: 'light',
+      messageColor: 'black',
+    });
+  </script> --}}
+  @endif
+
+@if ($errors->any())
+  @foreach ($errors->all() as $error)
+    <script>
+        iziToast.warning({
+            message: "{{ $error }}",
+            position: 'topRight',
+            timeout: 4000,
+            displayMode: 0,
+            color: 'orange',
+            theme: 'light',
+            messageColor: 'black',
+        });
+    </script>
+  @endforeach
+@endif
+
